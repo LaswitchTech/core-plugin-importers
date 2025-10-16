@@ -59,6 +59,13 @@ class ImportersEndpoint extends BaseEndpoint {
                     ["key" => "targetId", "operator" => "=", "value" => $message['data']['record']['id']],
                     ["key" => "isArchived", "operator" => "<>", "value" => 1],
                 ]);
+                if($this->Helper->Core->isInstalled('leads') && !is_null($message['data']['record']['lead']['id'])){
+                    $message['data']['dependencies']['contacts'] = array_merge($message['data']['dependencies']['contacts'], $this->Model->Contacts->fetchAll([
+                        ["key" => "targetTable", "operator" => "=", "value" => "leads"],
+                        ["key" => "targetId", "operator" => "=", "value" => $message['data']['record']['lead']['id']],
+                        ["key" => "isArchived", "operator" => "<>", "value" => 1],
+                    ]));
+                }
                 if($this->Helper->Core->isInstalled('clients') && !is_null($message['data']['record']['client']['id'])){
                     $message['data']['dependencies']['contacts'] = array_merge($message['data']['dependencies']['contacts'], $this->Model->Contacts->fetchAll([
                         ["key" => "targetTable", "operator" => "=", "value" => "clients"],
