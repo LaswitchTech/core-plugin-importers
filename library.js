@@ -285,7 +285,7 @@ builder.add('layouts','importer', class extends builder.ComponentClass {
                             },
                             function(tab,nav){
                                 card.tabs.contacts = tab;
-                                self._widgets.contacts = self._builder.Widget("contacts",tab,{data: self._data.dependencies.contacts ?? {},targetTable: self._properties.table,targetId: self._properties.id, default: self._data.record.vcard});
+                                self._widgets.contacts = self._builder.Widget("contacts",tab,{data: self._data.dependencies.contacts ?? {},targetTable: 'vcards',targetId: self._data.record.vcard.id, default: self._data.record.vcard});
                             },
                         );
                     }
