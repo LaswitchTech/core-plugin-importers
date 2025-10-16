@@ -157,58 +157,6 @@ class ImportersModel extends BaseModel {
     }
 
     /**
-     * Retrieve multiple records
-     *
-     * @param array $conditions
-     * @return array
-     */
-    public function count(array $conditions = [], string $conjunction = 'AND'): int
-    {
-        // Create the Query
-        $Query = $this->Database->query()
-            ->table($this->table)
-            ->select('*')
-            ->join('owner', 'users', 'username')
-            ->join('vcard', 'vcards', 'id')
-            ->join('task', 'tasks', 'id')
-            ->join('task.assignedTo', 'users', 'id')
-            ->join('client', 'clients', 'id')
-            ->join('client.task', 'tasks', 'id')
-            ->join('lead', 'leads', 'id')
-            ->join('lead.task', 'tasks', 'id')
-            ->join('organization', 'organizations', 'id')
-            ->index($this->primary)
-            ->filter()
-            ->where('id', 9999, '<>')
-            ->where('organization', $this->Auth->user()->organization()->id);
-
-        // Check if the conditions are empty
-        if(!empty($conditions)){
-
-            // Add a Filter
-            $Query->filter();
-
-            // Add the Conditions
-            foreach($conditions as $key => $condition){
-
-                // Check if the key exists in the definition
-                if(!array_key_exists($condition['key'], $this->definition)){
-
-                    // Remove the key from the data
-                    unset($conditions[$key]);
-                    continue;
-                }
-
-                // Add the condition to the Query
-                $Query->where($condition["key"], $condition["value"], $condition["operator"], $conjunction);
-            }
-        }
-
-        // Retrieve the Results
-        return count($Query->fetch());
-    }
-
-    /**
      * Retrieve a single record
      *
      * @param int $id
