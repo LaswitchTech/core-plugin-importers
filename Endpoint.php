@@ -66,6 +66,13 @@ class ImportersEndpoint extends BaseEndpoint {
                         ["key" => "isArchived", "operator" => "<>", "value" => 1],
                     ]));
                 }
+                if($this->Helper->Core->isInstalled('vcards') && !is_null($message['data']['record']['vcard']['id'])){
+                    $message['data']['dependencies']['contacts'] = array_merge($message['data']['dependencies']['contacts'], $this->Model->Contacts->fetchAll([
+                        ["key" => "targetTable", "operator" => "=", "value" => "vcards"],
+                        ["key" => "targetId", "operator" => "=", "value" => $message['data']['record']['vcard']['id']],
+                        ["key" => "isArchived", "operator" => "<>", "value" => 1],
+                    ]));
+                }
             }
 
             // Check if the Documents is accessible
