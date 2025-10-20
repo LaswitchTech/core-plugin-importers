@@ -173,6 +173,8 @@ class ImportersModel extends BaseModel {
             ->join('task', 'tasks', 'id')
             ->join('client', 'clients', 'id')
             ->join('client.task', 'tasks', 'id')
+            ->join('lead', 'leads', 'id')
+            ->join('lead.task', 'tasks', 'id')
             ->join('organization', 'organizations', 'id')
             ->filter()
                 ->where('id', 9999, '<>')
