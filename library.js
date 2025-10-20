@@ -523,21 +523,6 @@ builder.add('layouts','importer', class extends builder.ComponentClass {
             self._widgets.followups.meetings.load(self._data.dependencies.followups ?? {});
         }
 
-        // Files
-        if(self._data.extensions.includes('files')){
-            self._widgets.files.load(self._data.dependencies.files ?? {});
-        }
-
-        // Documents
-        if(self._data.extensions.includes('documents')){
-            self._widgets.documents.load(self._data.dependencies.documents ?? {});
-        }
-
-        // Services
-        if(self._data.extensions.includes('services')){
-            self._widgets.services.load(self._data.dependencies.services ?? {});
-        }
-
         // Event
         if(self._data.extensions.includes('event')){
             self._widgets.event.load(self._data.dependencies.event ?? {});
