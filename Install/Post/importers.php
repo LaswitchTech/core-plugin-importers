@@ -13,7 +13,7 @@ class ImportersPostModel extends ImportersModel {
     public function post($record): array
     {
         // Check if the record ID is below 9999
-        if($record['id'] <= 9999) return $record;
+        if($record['id'] <= 9999) return [];
 
         // Loop through the record
         foreach($record as $key => $value){
