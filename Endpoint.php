@@ -258,7 +258,7 @@ class ImportersEndpoint extends BaseEndpoint {
                 // Create the relationship with the lead
                 $this->Model->Relationship->create(
                     'leads',
-                    $message['data']['record']['lead']['id'],
+                    $parameters['lead'],
                     $this->basename,
                     $message['data']['record']['id'],
                 );
@@ -266,13 +266,13 @@ class ImportersEndpoint extends BaseEndpoint {
                     $this->basename,
                     $message['data']['record']['id'],
                     'leads',
-                    $message['data']['record']['lead']['id'],
+                    $parameters['lead'],
                 );
 
                 // Create the relationship with the client
                 $this->Model->Relationship->create(
                     'clients',
-                    $message['data']['record']['client']['id'],
+                    $parameters['client'],
                     $this->basename,
                     $message['data']['record']['id'],
                 );
@@ -280,7 +280,7 @@ class ImportersEndpoint extends BaseEndpoint {
                     $this->basename,
                     $message['data']['record']['id'],
                     'clients',
-                    $message['data']['record']['client']['id'],
+                    $parameters['client'],
                 );
             }
 
