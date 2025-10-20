@@ -7,7 +7,6 @@
                 conditions: [
                     {key: 'isArchived', operator: '<>', value: 1},
                     {key: 'task.isArchived', operator: '<>', value: 1},
-                    {key: 'task.isCompleted', operator: '<>', value: 1},
                 ],
                 dblclick: function(event, table, dt, node, data){
                     window.location.href = "/importers/details?id=" + data.id + "&name=" + encodeURIComponent(data.vcard.name);
